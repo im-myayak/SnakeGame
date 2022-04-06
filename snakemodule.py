@@ -15,11 +15,13 @@ MOST_UP = 285
 class Snake:
     def __init__(self):
         self.list_square = []
-
-        for position in STARTING_POSITION:
-            self.new_square(position)
+        self.create_snake()
         self.head = self.list_square[0]
         self.tail = self.list_square[len(self.list_square)-1]
+
+    def create_snake(self):
+        for position in STARTING_POSITION:
+            self.new_square(position)
 
     def move_snake(self):
         for i in range(len(self.list_square) - 1, 0, -1):
@@ -42,6 +44,14 @@ class Snake:
             if self.head.distance(obj) < 15:
                 return True
         return False
+
+    def reset_the_snake(self):
+        for obj in self.list_square:
+            obj.goto(1000, 1000)
+        self.list_square.clear()
+        self.create_snake()
+        self.head = self.list_square[0]
+        self.tail = self.list_square[len(self.list_square) - 1]
 
     def stop_condition(self):
         xcor = self.head.xcor()

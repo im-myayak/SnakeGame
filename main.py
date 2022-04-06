@@ -29,8 +29,9 @@ while game_started:
 
     time.sleep(0.1)
     if theSnake.stop_condition():
-        game_started = False
-        theScore.game_over()
+        # game_started = False
+        theScore.reset_score()
+        theSnake.reset_the_snake()
 
     theSnake.move_snake()
 
